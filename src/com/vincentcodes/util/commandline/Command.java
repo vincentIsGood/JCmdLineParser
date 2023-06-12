@@ -7,11 +7,13 @@ public class Command {
     private String name;
     private Map<String, String> optionPairs;
     private List<String> parameters;
+    private ParserConfig config;
 
-    public Command(String name, Map<String, String> optionPairs, List<String> parameters){
+    public Command(String name, Map<String, String> optionPairs, List<String> parameters, ParserConfig config){
         this.name = name;
         this.optionPairs = optionPairs;
         this.parameters = parameters;
+        this.config = config;
     }
 
     public String getName(){
@@ -45,5 +47,13 @@ public class Command {
 
     public List<String> getParameters(){
         return parameters;
+    }
+
+    public void simplePrintHelp(String commandSyntax){
+        System.out.println(commandSyntax);
+        System.out.println(config.getOptionsHelpString());
+    }
+    public void simplePrintHelp(){
+        simplePrintHelp("java -jar example.jar [options]");
     }
 }

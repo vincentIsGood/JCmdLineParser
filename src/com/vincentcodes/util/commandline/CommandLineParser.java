@@ -42,7 +42,7 @@ public class CommandLineParser {
             }
         }
 
-        return new Command("command", optionPairs, params);
+        return new Command("command", optionPairs, params, config);
     }
 
     private boolean isRepeatedOption(HashMap<String, String> optionPairs, String option){
