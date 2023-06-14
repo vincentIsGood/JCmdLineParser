@@ -32,4 +32,10 @@ public class Option {
     public int optionParamLength(){
         return option.length() + parameterDescription.length();
     }
+
+    @Override
+    public String toString() {
+        return String.format("{Option option: %s, isStandalone: %s, paramDesc: %s, desc: %s}", 
+            option, isStandalone, parameterDescription, description);
+    }
 }

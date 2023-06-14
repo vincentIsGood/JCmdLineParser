@@ -1,10 +1,15 @@
 package com.vincentcodes.test;
 
+import com.vincentcodes.util.commandline.ArgumentObjectMapper;
 import com.vincentcodes.util.commandline.Command;
 import com.vincentcodes.util.commandline.CommandLineParser;
 import com.vincentcodes.util.commandline.ParserConfig;
 
 public class Test {
+    /**
+     * Note: it is now recommended to use {@link ArgumentObjectMapper}
+     * @link TestObjectMapping
+     */
     public static void main(String[] args){
         args = new String[]{
             "-h"

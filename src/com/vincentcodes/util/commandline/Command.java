@@ -54,6 +54,6 @@ public class Command {
         System.out.println(config.getOptionsHelpString());
     }
     public void simplePrintHelp(){
-        simplePrintHelp("java -jar example.jar [options]");
+        simplePrintHelp("java -jar executable.jar [options]");
     }
 }

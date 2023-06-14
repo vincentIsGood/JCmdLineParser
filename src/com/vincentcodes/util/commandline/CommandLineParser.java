@@ -8,6 +8,7 @@ import java.util.HashMap;
  * https://stackoverflow.com/questions/36495669/difference-between-terms-option-argument-and-parameter
  */
 public class CommandLineParser {
+    public static boolean SUPPRESS_WARN = true;
     private ParserConfig config;
 
     public CommandLineParser(ParserConfig config){
@@ -15,8 +16,7 @@ public class CommandLineParser {
     }
 
     /**
-     * Expecting args only (especially args that comes
-     * from main(String[] args))
+     * @param args from main(String[] args))
      */
     public Command parse(String[] args){
         ArrayList<String> params = new ArrayList<>();
@@ -29,7 +29,11 @@ public class CommandLineParser {
             }
             if(config.hasOption(arg) && !config.optionIsStandalone(arg)){
                 if(i+1 < args.length){
-                    optionPairs.put(arg, args[++i]);
+                    String value = args[++i];
+                    if(!SUPPRESS_WARN && value.startsWith("-")){
+                        System.out.println(String.format("[!] Taking a dashed value for '%s'. (ie. %s=%s)", arg, arg, value));
+                    }
+                    optionPairs.put(arg, value);
                 }else{
                     throw new RuntimeException("Option '" + arg + "' needs a parameter");
                 }
