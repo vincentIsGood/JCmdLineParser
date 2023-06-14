@@ -109,6 +109,6 @@ public class ArgumentObjectMapper {
         }catch(NumberFormatException e){
             throw new ConversionException(String.format("Cannot parse value '%s' for field '%s'", value, fieldName));
         }
-        throw new ConversionException(String.format("Cannot parse value '%s' for field '%s'", value, fieldName));
+        return value;
     }
 }
