@@ -30,10 +30,10 @@ public class TestObjectMapping {
      */
     @ParameterizedTest
     @ValueSource(strings = {"-h --int-value 123 -l 12345678 --finalone 123.123"})
-    public void no_options_at_all(String unknownCommand){
+    public void new_way_of_parsing(String rawCommand){
         ArgumentObjectMapper.SHOW_SHORT_FORM_DESC = false;
         
-        String[] args = unknownCommand.split(" ");
+        String[] args = rawCommand.split(" ");
         ObjectMapperParseResult<TestOptions> options = ArgumentObjectMapper.parseToObject(args, TestOptions.class);
         if(options.result.help){
             // options.simplePrintHelp(); // also fine
