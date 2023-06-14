@@ -6,6 +6,8 @@ import com.vincentcodes.util.commandline.annotations.CmdOption;
 import com.vincentcodes.util.commandline.exceptions.ConversionException;
 
 public class ArgumentObjectMapper {
+    public static boolean SHOW_SHORT_FORM_DESC = false;
+
     /**
      * @param args from main(String[] args))
      * @param optionsClass map options to this class
@@ -82,7 +84,7 @@ public class ArgumentObjectMapper {
             String fullShortName = optionAnno.shortForm().isEmpty()? null : "-" + optionAnno.shortForm();
             if(fullShortName == null)
                 continue;
-            parserConfig.addOption(fullShortName, isStandalone, String.format("short form of '%s'", fullOptionName));
+            parserConfig.addOption(fullShortName, isStandalone, SHOW_SHORT_FORM_DESC? String.format("short form of '%s'", fullOptionName) : "");
         }
         return parserConfig;
     }
