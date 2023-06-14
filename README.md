@@ -49,6 +49,19 @@ public void new_way_of_parsing(String rawCommand){
 }
 ```
 
+Sample print help output:
+```
+java -jar example.com [options]
+    --help              
+    -h                  
+    --int-value <value> give me an int
+    --string-me         
+    --long-one          
+    -l                  
+    --doubleMe          
+    --finalone
+```
+
 ## Old Usage
 
 The most important class in this library is `CommandLineParser`. Within the class, the `parse(String[])` function expects arguments that comes from `public static void main(String[] args)`. You need to add a `ParserConfig` to the parser, since the parser will use it to check for required options and throw errors on invalid options.
