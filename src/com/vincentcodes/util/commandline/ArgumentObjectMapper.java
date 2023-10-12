@@ -58,7 +58,7 @@ public class ArgumentObjectMapper {
             }
         }
 
-        return new ObjectMapperParseResult<T>(instance, parserConfig);
+        return new ObjectMapperParseResult<T>(instance, command, parserConfig);
     }
 
     private static ParserConfig createParserConfigFromClass(Class<?> optionsClass){

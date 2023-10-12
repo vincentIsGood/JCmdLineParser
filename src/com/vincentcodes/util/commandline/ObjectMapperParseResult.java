@@ -4,11 +4,13 @@ package com.vincentcodes.util.commandline;
  * Access {@code result} property to get parsed values for your defined property.
  */
 public class ObjectMapperParseResult<T> {
-    public T result;
-    public ParserConfig parserConfig;
+    public final T result;
+    public final Command command;
+    public final ParserConfig parserConfig;
 
-    public ObjectMapperParseResult(T result, ParserConfig parserConfig){
+    public ObjectMapperParseResult(T result, Command command, ParserConfig parserConfig){
         this.result = result;
+        this.command = command;
         this.parserConfig = parserConfig;
     }
 
