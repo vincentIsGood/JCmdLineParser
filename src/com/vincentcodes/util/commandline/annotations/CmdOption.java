@@ -9,7 +9,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface CmdOption {
     /**
-     * eg. "option"
+     * eg. "option" for "--option"
      */
     String value() default "";
 

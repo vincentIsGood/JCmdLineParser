@@ -3,7 +3,6 @@ package com.vincentcodes.util.commandline;
 import java.lang.reflect.Field;
 
 import com.vincentcodes.util.commandline.annotations.CmdOption;
-import com.vincentcodes.util.commandline.exceptions.ConversionException;
 
 public class ArgumentObjectMapper {
     public static boolean SHOW_SHORT_FORM_DESC = false;
@@ -49,11 +48,11 @@ public class ArgumentObjectMapper {
 
                 // short form value takes precedence
                 if(!optionAnno.shortForm().isEmpty()){
-                    field.set(instance, resolveValue(command.getOptionValue(fullShortName), field.getType(), field.getName()));
+                    field.set(instance, ObjectResolutionUtils.resolveValue(command.getOptionValue(fullShortName), field.getType(), field.getName()));
                     continue;
                 }
 
-                field.set(instance, resolveValue(command.getOptionValue(fullOptionName), field.getType(), field.getName()));
+                field.set(instance, ObjectResolutionUtils.resolveValue(command.getOptionValue(fullOptionName), field.getType(), field.getName()));
             } catch (ReflectiveOperationException e) {
                 throw new IllegalStateException(String.format("Cannot set value of field '%s'", field.getName()));
             }
@@ -87,28 +86,5 @@ public class ArgumentObjectMapper {
             parserConfig.addOption(fullShortName, isStandalone, SHOW_SHORT_FORM_DESC? String.format("short form of '%s'", fullOptionName) : "");
         }
         return parserConfig;
-    }
-
-    private static Object resolveValue(String value, Class<?> clazz, String fieldName){
-        try{
-            if(clazz.equals(boolean.class) || clazz.equals(Boolean.class)){
-                return Boolean.parseBoolean(value);
-            }else if(clazz.equals(int.class) || clazz.equals(Integer.class)){
-                return Integer.parseInt(value);
-            }else if(clazz.equals(double.class) || clazz.equals(Double.class)){
-                return Double.parseDouble(value);
-            }else if(clazz.equals(byte.class) || clazz.equals(Byte.class)){
-                return Byte.parseByte(value);
-            }else if(clazz.equals(short.class) || clazz.equals(Short.class)){
-                return Short.parseShort(value);
-            }else if(clazz.equals(long.class) || clazz.equals(Long.class)){
-                return Long.parseLong(value);
-            }else if(clazz.equals(float.class) || clazz.equals(Float.class)) {
-                return Float.parseFloat(value);
-            }
-        }catch(NumberFormatException e){
-            throw new ConversionException(String.format("Cannot parse value '%s' for field '%s'", value, fieldName));
-        }
-        return value;
     }
 }

@@ -1,6 +1,6 @@
 @echo off
 
-set jarname=commandlineutil-v2.0.0
+set jarname=commandlineutil-v2.1.0
 set structure=com/vincentcodes/util/commandline/*
 
 :: with Manifest
