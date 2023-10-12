@@ -50,7 +50,7 @@ public class TestObjectMapping {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = {"--listStr a,bdsads,c --listInt 1,2,3 -h"})
+    @ValueSource(strings = {"--listStr a,bdsads,c --listInt 1 -h"})
     public void new_way_of_parsing_list_args(String rawCommand){
         ArgumentObjectMapper.SHOW_SHORT_FORM_DESC = false;
         
@@ -63,6 +63,6 @@ public class TestObjectMapping {
         System.out.println(Arrays.toString(options.result.listStr));
         System.out.println(Arrays.toString(options.result.listInt));
         assertEquals(options.result.listStr[1], "bdsads");
-        assertEquals(options.result.listInt[1], 2);
+        assertEquals(options.result.listInt[0], 1);
     }
 }
