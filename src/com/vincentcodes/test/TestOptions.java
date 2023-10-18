@@ -37,5 +37,8 @@ public class TestOptions {
     @CmdOption
     public int[] listInt;
 
+    @CmdOption(shortForm = "options")
+    public String optionsfile;
+
     public boolean ignored = false;
 }

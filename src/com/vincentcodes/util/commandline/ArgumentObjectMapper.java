@@ -47,7 +47,7 @@ public class ArgumentObjectMapper {
                 }
 
                 // short form value takes precedence
-                if(!optionAnno.shortForm().isEmpty()){
+                if(!optionAnno.shortForm().isEmpty() && command.hasOption(fullShortName)){
                     field.set(instance, ObjectResolutionUtils.resolveValue(command.getOptionValue(fullShortName), field.getType(), field.getName()));
                     continue;
                 }

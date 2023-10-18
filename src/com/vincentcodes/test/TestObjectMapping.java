@@ -31,7 +31,7 @@ public class TestObjectMapping {
      * @link TestOptions
      */
     @ParameterizedTest
-    @ValueSource(strings = {"-h --int-value 123 -l 12345678 --finalone 123.123"})
+    @ValueSource(strings = {"-h --int-value 123 -l 12345678 --finalone 123.123 --optionsfile asd"})
     public void new_way_of_parsing(String rawCommand){
         ArgumentObjectMapper.SHOW_SHORT_FORM_DESC = false;
         
@@ -47,6 +47,7 @@ public class TestObjectMapping {
         assertEquals(options.result.opt3, 12345678);
         assertTrue(options.result.doubleMe == 123.321);
         assertTrue(options.result.finalone == 123.123);
+        assertEquals(options.result.optionsfile, "asd");
     }
 
     @ParameterizedTest
